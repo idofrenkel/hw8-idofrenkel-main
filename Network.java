@@ -137,7 +137,7 @@ public class Network {
         StringBuilder result = new StringBuilder();
         result.append("Network:\n");
         for (int i = 0; i < userCount; i++) {
-            result.append(users[i].toString()).append("\n");
+            result.append(users[i].toString()).append(" ");
         }
         return result.toString();
     }
