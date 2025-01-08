@@ -46,6 +46,10 @@
         if (name == null) {
             return false; // Cannot follow a null name.
         }
+        if (name == this.getName()) {
+            return false;
+            
+        }
         if (follows != null) {
             for (int i = 0; i < follows.length; i++) {
                 if (follows[i] != null && name.equals(follows[i])) {
