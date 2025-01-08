@@ -105,13 +105,13 @@ public int countMutual(User other) {
     return mutualFollowers;
 }
 
-    /** Checks is this user is a friend of the other user.
+    /** Checks if this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         if (other == null) {
             return false; // Cannot be friends with a null user.
         }
-        return this.follows(other.getName());
+        return this.follows(other.getName()) && other.follows(this.getName());
     }
     
     /** Returns this user's name, and the names that s/he follows. */
