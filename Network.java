@@ -70,7 +70,7 @@ public class Network {
         }
 
         // Attempt to add the followee
-        return user1.addFollowee(name2);
+        return user1.addFollowee(user2.getName());
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
@@ -78,21 +78,25 @@ public class Network {
     public String recommendWhoToFollow(String name) {
         //// Replace the following statement with your code
         
-        User mostRecommendedUserToFollow = new User("null");
-        for (int i = 0; i < userCount; i++){
-
-            if (!getUser(name).getName().equals(name)) { 
-            continue; 
-        }  
-            if ((users[i].countMutual(getUser(name)) > mostRecommendedUserToFollow.countMutual(getUser(name)))) {
-                mostRecommendedUserToFollow = users [i];
-
-                return mostRecommendedUserToFollow.getName();
-                
+        User mostRecommendedUserToFollow = null;
+        int maxMutualCount = -1;
+        User currentUser = getUser(name);
+        
+        for (int i = 0; i < userCount; i++) {
+            if (users[i].getName().equals(name)) {
+                continue;
+            }
+            int mutualCount = users[i].countMutual(currentUser);
+            if (mutualCount > maxMutualCount) {
+                maxMutualCount = mutualCount;
+                mostRecommendedUserToFollow = users[i];
             }
         }
         
-              
+        if (mostRecommendedUserToFollow != null) {
+            return mostRecommendedUserToFollow.getName();
+        }
+        
         return null;
     }
 
@@ -128,12 +132,13 @@ public class Network {
     }
 
     // Returns a textual description of all the users in this network, and who they follow.
+    
     public String toString() {
-       //// Replace the following statement with your code
-       System.out.println("Network:");
-       for (int i = 0; i < userCount; i++){
-        System.out.println(users[i]);
-       }
-       return null;
+    String result = "Network:\n";
+    for (int i = 0; i < userCount; i++) {
+        result += users[i].toString() + "\n";
     }
+    return result;
+}
+
 }
