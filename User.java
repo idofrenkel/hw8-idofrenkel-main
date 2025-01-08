@@ -46,15 +46,12 @@
         if (name == null) {
             return false; // Cannot follow a null name.
         }
-        if (name == this.getName()) {
-            return false;
-            
+        if (name.equals(this.getName())) {
+            return false; // Cannot follow oneself.
         }
-        if (follows != null) {
-            for (int i = 0; i < follows.length; i++) {
-                if (follows[i] != null && name.equals(follows[i])) {
-                    return true;
-                }
+        for (int i = 0; i < fCount; i++) {
+            if (name.equals(follows[i])) {
+                return true;
             }
         }
         return false;
@@ -94,8 +91,8 @@
         return false;
     }
 
-    /** Counts the number of users that both this user and the other user follow.
-    /*  Notice: This is the size of the intersection of the two follows lists. */
+/** Counts the number of users that both this user and the other user follow.
+ *  Notice: This is the size of the intersection of the two follows lists. */
 public int countMutual(User other) {
     int mutualFollowers = 0;
     for (int i = 0; i < this.fCount; i++) { // Start from 0
@@ -111,8 +108,12 @@ public int countMutual(User other) {
     /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
-        return this.follows(other.getName()) && other.follows(this.getName());
+        if (other == null) {
+            return false; // Cannot be friends with a null user.
+        }
+        return this.follows(other.getName());
     }
+    
     /** Returns this user's name, and the names that s/he follows. */
     public String toString() {
         String ans = name + " -> ";
