@@ -65,7 +65,7 @@ public class Network {
         User user2 = getUser(name2);
 
         // Check if both users exist in the network
-        if (user1 == null || user2 == null) {
+        if (user1 == null || user2 == null || user1 == user2) {
             return false;
         }
 
@@ -134,9 +134,9 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     
     public String toString() {
-    String result = "Network:\n";
+    String result = "Network:";
     for (int i = 0; i < userCount; i++) {
-        result += users[i].toString() + "\n";
+        System.out.println(users[i].toString() + "");
     }
     return result;
 }
