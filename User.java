@@ -66,8 +66,8 @@
             return false; // list is full
         }
             
-        follows[fCount] = name;
-        fCount++;
+        this.follows[fCount] = name;
+        this.fCount++;
         return true;
     }
 
