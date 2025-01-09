@@ -67,7 +67,7 @@
         }
             
         this.follows[fCount] = name;
-        this.fCount++;
+        this.fCount ++;
         return true;
     }
 
