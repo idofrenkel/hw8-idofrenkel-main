@@ -43,9 +43,7 @@
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        if (name == null) {
-            return false; // Cannot follow a null name.
-        }
+        
         if (name.equals(this.getName())) {
             return false; // Cannot follow oneself.
         }
@@ -62,7 +60,7 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false.
      *  */
     public boolean addFollowee(String name) {
-        if (fCount >= maxfCount) {
+        if (fCount == maxfCount) {
             return false; // list is full
         }
         for (int j = 0; j < fCount; j++) {
