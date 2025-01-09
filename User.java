@@ -59,7 +59,7 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false.
      *  */
     public boolean addFollowee(String name) {
-        if (fCount >= maxfCount) {
+        if (fCount-1 >= maxfCount) {
             return false; // list is full
         }
         for (int j = 0; j < fCount; j++) {
