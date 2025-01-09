@@ -46,8 +46,11 @@
         if (name == null) {
             return false; // Cannot follow a null name.
         }
+        if (name.equals(this.getName())) {
+            return false; // Cannot follow oneself.
+        }
         for (int i = 0; i < fCount; i++) {
-            if (name.equals(follows[i])) {
+            if (name.equalsIgnoreCase(follows[i])) {
                 return true;
             }
         }
@@ -59,11 +62,11 @@
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false.
      *  */
     public boolean addFollowee(String name) {
-        if (fCount-1 >= maxfCount) {
+        if (fCount >= maxfCount) {
             return false; // list is full
         }
         for (int j = 0; j < fCount; j++) {
-            if (name.equals(this.follows[j])) {
+            if (name.toLowerCase().equals(this.follows[j].toLowerCase())) {
                 return false; // already follows
             }
         }
@@ -102,7 +105,7 @@ public int countMutual(User other) {
     return mutualFollowers;
 }
 
-    /** Checks if this user is a friend of the other user.
+    /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         if (other == null) {
